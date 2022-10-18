@@ -25,9 +25,8 @@ public class FragmentLListat extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        RecyclerView recyclerView = view.findViewById(R.id.frListado);
-        System.out.println(Arrays.toString(contactos));
-        assert contactos !=null && listener !=null;
+        assert  contactos !=null && listener !=null;
+        RecyclerView recyclerView = view.findViewById(R.id.rvLListat);
         recyclerView.setAdapter(new AdaptadorContacto(contactos,listener));
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
 

@@ -35,7 +35,7 @@ public class FragmentDetall extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         nombre = view.findViewById(R.id.tvNombre);
-        apellidos = view.findViewById(R.id.tvApellidos);
+        apellidos = view.findViewById(R.id.tvPrimero);
         segundoApellido = view.findViewById(R.id.tvSegundo);
         direcion = view.findViewById(R.id.tvDirecion);
         empresa = view.findViewById(R.id.tvEmpresa);

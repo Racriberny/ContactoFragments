@@ -39,7 +39,8 @@ public class AdaptadorContacto extends RecyclerView.Adapter<AdaptadorContacto.Co
 
     public static class ContactViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private final TextView nombre;
-        private final TextView apellidos;
+        private final TextView primerApellido;
+        private final TextView segundoApellido;
         private final TextView direcion;
         private final TextView empresa;
         private final TextView fechaNacimiento;
@@ -50,7 +51,8 @@ public class AdaptadorContacto extends RecyclerView.Adapter<AdaptadorContacto.Co
         public ContactViewHolder(@NonNull View itemView, IContactoLister lister) {
             super(itemView);
             nombre = itemView.findViewById(R.id.tvNombre);
-            apellidos = itemView.findViewById(R.id.tvApellidos);
+            primerApellido = itemView.findViewById(R.id.tvPrimero);
+            segundoApellido = itemView.findViewById(R.id.tvSegundo);
             direcion = itemView.findViewById(R.id.tvDirecion);
             empresa = itemView.findViewById(R.id.tvEmpresa);
             fechaNacimiento = itemView.findViewById(R.id.tvFecha);
@@ -63,7 +65,8 @@ public class AdaptadorContacto extends RecyclerView.Adapter<AdaptadorContacto.Co
 
         public void bindContacto(Contacto contacto) {
             nombre.setText(contacto.getNombre());
-            apellidos.setText(contacto.getPrimerApellido());
+            primerApellido.setText(contacto.getPrimerApellido());
+            segundoApellido.setText(contacto.getSegundoApellido());
             direcion.setText(contacto.getDireccion());
             empresa.setText(contacto.getEmpresa());
             fechaNacimiento.setText(contacto.getFechaNacimiento());
