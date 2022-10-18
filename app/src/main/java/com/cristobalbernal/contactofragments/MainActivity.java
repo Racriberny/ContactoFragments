@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements IContactoLister, 
 
     public MainActivity() {
         super(R.layout.activity_main);
+        frgListado = null;
         frgDetalle = null;
         tabletLayout = false;
     }
@@ -30,12 +31,12 @@ public class MainActivity extends AppCompatActivity implements IContactoLister, 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        tabletLayout = findViewById(R.id.frDetalle) != null;
         ParseJSON parser = new ParseJSON(this);
 
         try {
             if(parser.parse()) {
-                contactos = parser.getContactos();
+                this.contactos = parser.getContactos();
             } else {
                 Toast.makeText(this, "Error al obtener los contactos", Toast.LENGTH_LONG).show();
             }
@@ -44,8 +45,6 @@ public class MainActivity extends AppCompatActivity implements IContactoLister, 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        tabletLayout = findViewById(R.id.frDetalle) != null;
 
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction()
@@ -79,8 +78,9 @@ public class MainActivity extends AppCompatActivity implements IContactoLister, 
 
     @Override
     public void onContactoSelecionado(int id) {
+        Contacto contacto = contactos[id];
         if (tabletLayout) {
-            frgDetalle.mostrarDetalle(contactos[id]);
+            frgDetalle.mostrarDetalle(contacto);
         } else {
             Intent i = new Intent(this,DetallerActivity.class);
             i.putExtra(DetallerActivity.EXTRA_TEXTO, contactos[id].getNombre());

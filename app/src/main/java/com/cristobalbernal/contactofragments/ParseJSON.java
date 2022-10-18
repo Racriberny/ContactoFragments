@@ -4,6 +4,7 @@ import android.content.Context;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.io.IOException;
@@ -20,7 +21,6 @@ public class ParseJSON {
     public boolean parse() throws IOException, JSONException {
         boolean parsed;
         contactos = null;
-        StringBuilder stringBuilder = new StringBuilder();
         String json;
         int size = archivosContacto.available();
         byte[] buffer = new byte[size];
@@ -30,19 +30,19 @@ public class ParseJSON {
         JSONTokener tokener = new JSONTokener(json);
         JSONArray array = new JSONArray(tokener);
         contactos = new Contacto[array.length()];
-
         for (int i = 0; i <array.length() ; i++) {
-            stringBuilder.setLength(0);
-            String nombre = array.getJSONObject(i).getString("name");
-            String firstSurname = array.getJSONObject(i).getString("firstSurname");
-            String secondSurname = array.getJSONObject(i).getString("secondSurname");
-            String birth = array.getJSONObject(i).getString("birth");
-            String company = array.getJSONObject(i).getString("company");
-            String email = array.getJSONObject(i).getString("email");
-            String phone1 = array.getJSONObject(i).getString("phone1");
-            String phone2 = array.getJSONObject(i).getString("phone2");
-            String address = array.getJSONObject(i).getString("address");
-            contactos[i] = new Contacto(i,nombre,firstSurname,secondSurname,address,company,birth,phone1,phone2,email);
+            JSONObject jsonObject = array.getJSONObject(i);
+            int id  = jsonObject.getInt("id");
+            String nombre = jsonObject.getString("name");
+            String firstSurname = jsonObject.getString("firstSurname");
+            String secondSurname = jsonObject.getString("secondSurname");
+            String birth = jsonObject.getString("birth");
+            String company = jsonObject.getString("company");
+            String email = jsonObject.getString("email");
+            String phone1 = jsonObject.getString("phone1");
+            String phone2 = jsonObject.getString("phone2");
+            String address = jsonObject.getString("address");
+            contactos[i] = new Contacto(id,nombre,firstSurname,secondSurname,address,company,birth,phone1,phone2,email);
         }
         parsed = true;
         return parsed;

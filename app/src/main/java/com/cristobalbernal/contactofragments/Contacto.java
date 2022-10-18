@@ -1,16 +1,16 @@
 package com.cristobalbernal.contactofragments;
 
 public class Contacto {
-    private int id;
-    private String nombre;
-    private String primerApellido;
-    private String segundoApellido;
-    private String direccion;
-    private String empresa;
-    private String fechaNacimiento;
-    private String telefono1;
-    private String telefono2;
-    private String email;
+    private final int id;
+    private final String nombre;
+    private final String primerApellido;
+    private final String segundoApellido;
+    private final String direccion;
+    private final String empresa;
+    private final String fechaNacimiento;
+    private final String telefono1;
+    private final String telefono2;
+    private final String email;
 
 
 
